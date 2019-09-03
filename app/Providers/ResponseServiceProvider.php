@@ -36,7 +36,7 @@ class ResponseServiceProvider extends ServiceProvider
                 $customFormat = [
                     'success' => false,
                     'code' => $code,
-                    'eror' => $data
+                    'message' => $data
                 ];
             }
             return $factory->make($customFormat);

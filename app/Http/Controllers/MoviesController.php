@@ -23,7 +23,7 @@ class MoviesController extends Controller
 
             return response()->api($response);
         } catch (\Exception $exception) {
-            return response()->api($response, false, 500);
+            return response()->api($exception->getMessage(), false, 500);
         }
 
     }
