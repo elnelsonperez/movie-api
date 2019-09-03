@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\FavoriteMovie;
 use App\Http\Requests\AddFavoriteMovie;
 use App\Http\Requests\SearchMovie;
+use Illuminate\Support\Facades\Auth;
 use Tmdb\Client;
+use Tmdb\Exception\TmdbApiException;
 
 
 class MoviesController extends Controller
@@ -44,6 +47,21 @@ class MoviesController extends Controller
     {
         try {
 
+            $movie_id = $request->get('movie_id');
+
+            try {
+               $movie = $this->client->getMoviesApi()->getMovie($movie_id);
+            } catch (TmdbApiException $e) {
+                if ($e->getResponse()->getCode() === 404) {
+                    return response()->api('The movie could not be found', false, 404);
+                } else {
+                    throw $e;
+                }
+            }
+
+            FavoriteMovie::firstOrCreate(['user_id' => Auth::user()->id, 'movie_id' => $movie_id]);
+
+            return response()->api($movie, 201);
 
         } catch (\Exception $exception) {
             return response()->api($exception->getMessage(), false, 500);
