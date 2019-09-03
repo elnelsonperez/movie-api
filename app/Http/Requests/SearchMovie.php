@@ -25,7 +25,7 @@ class SearchMovie extends FormRequest
     {
         return [
             'title' => 'string|required_without:id',
-            'id' => 'string|required_without:title',
+            'movie_id' => 'string|required_without:title',
         ];
     }
 }
