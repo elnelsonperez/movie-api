@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\FavoriteMovie;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SearchMoviesApiTest extends TestCase
 {
@@ -25,6 +25,15 @@ class SearchMoviesApiTest extends TestCase
     {
         $response = $this->json('post', route('movies.add_favorite'), ['movie_id' => 200]);
         $response->assertJsonFragment(['success' => true]);
+        $this->assertTrue(FavoriteMovie::all()->first->movie_id === 200);
+    }
+
+    public function listFavorites () {
+
+        FavoriteMovie::create([
+
+        ]);
+
     }
 
 }

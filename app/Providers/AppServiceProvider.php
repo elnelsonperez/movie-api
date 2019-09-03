@@ -31,7 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Login the only user
-        Auth::login(User::find(1));
+
     }
 }

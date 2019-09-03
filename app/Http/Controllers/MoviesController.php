@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FavoriteMovie;
 use App\Http\Requests\AddFavoriteMovie;
+use App\Http\Requests\DeleteFavorite;
 use App\Http\Requests\SearchMovie;
 use Illuminate\Support\Facades\Auth;
 use Tmdb\Client;
@@ -68,4 +69,35 @@ class MoviesController extends Controller
         }
     }
 
+    public function listFavorites()
+    {
+        try {
+
+            $user_movies = FavoriteMovie::where('user_id', Auth::user()->id)->get();
+
+            $movies = [];
+
+            foreach ($user_movies as $m) {
+                $movies[] = $this->client->getMoviesApi()->getMovie($m->movie_id);
+            }
+
+            return response()->api($movies, 200);
+        } catch (\Exception $exception) {
+            return response()->api($exception->getMessage(), false, 500);
+        }
+    }
+
+
+    public function deleteFavorites(DeleteFavorite $request)
+    {
+        try {
+            $fav = FavoriteMovie::where('movie_id', $request->get('movie_id'))
+                ->where('user_id', Auth::user()->id)->firstOrFail();
+
+            $fav->delete();
+            return response()->api(['deleted_ids' => (int)$fav->movie_id], 200);
+        } catch (\Exception $exception) {
+            return response()->api($exception->getMessage(), false, 500);
+        }
+    }
 }
