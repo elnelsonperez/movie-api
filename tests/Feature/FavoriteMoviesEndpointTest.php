@@ -25,15 +25,7 @@ class SearchMoviesApiTest extends TestCase
     {
         $response = $this->json('post', route('movies.add_favorite'), ['movie_id' => 200]);
         $response->assertJsonFragment(['success' => true]);
-        $this->assertTrue(FavoriteMovie::all()->first->movie_id === 200);
-    }
-
-    public function listFavorites () {
-
-//        FavoriteMovie::create([
-//
-//        ]);
-
+        $this->assertTrue(FavoriteMovie::all()->first()->movie_id == 200);
     }
 
 }
