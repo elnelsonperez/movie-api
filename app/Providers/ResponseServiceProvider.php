@@ -39,7 +39,7 @@ class ResponseServiceProvider extends ServiceProvider
                     'message' => $data
                 ];
             }
-            return $factory->make($customFormat);
+            return $factory->make($customFormat, $code);
 
         });
     }
