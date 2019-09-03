@@ -10,6 +10,7 @@
         },
         "/movie/search": {
             "summary": "Search for a movie",
+            "description": "Search for a movie using id or title",
             "get": {
                 "responses": {
                     "200": {
