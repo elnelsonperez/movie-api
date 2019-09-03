@@ -24,7 +24,8 @@ class SearchMovie extends FormRequest
     public function rules()
     {
         return [
-            'query' => 'string|required'
+            'title' => 'string|required_without:id',
+            'id' => 'string|required_without:title',
         ];
     }
 }

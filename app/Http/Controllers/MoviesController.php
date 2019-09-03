@@ -13,7 +13,14 @@ class MoviesController extends Controller
     {
 
         try {
-            $response = $client->getSearchApi()->searchMovies($request->get('query'));
+
+            // Validation takes care of making sure either id or search query is provided
+            if ($request->has('id')) {
+                $response = $client->getMoviesApi()->getMovie($request->get('id'));
+            } else {
+                $response = $client->getSearchApi()->searchMovies($request->get('title'));
+            }
+
             return response()->api($response);
         } catch (\Exception $exception) {
             return response()->api($response, false, 500);
