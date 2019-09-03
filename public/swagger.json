@@ -1,0 +1,202 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Upstack Coding Test",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/movie": {
+
+        },
+        "/movie/search": {
+            "summary": "Search for a movie",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "movies.serarch": {
+                                        "value": {
+                                            "success": true,
+                                            "code": 200,
+                                            "data": {
+                                                "page": 1,
+                                                "total_results": 10000,
+                                                "total_pages": 500,
+                                                "results": [
+                                                    {
+                                                        "popularity": 358.378,
+                                                        "vote_count": 464,
+                                                        "video": false,
+                                                        "poster_path": "/a4BfxRK8dBgbQqbRxPs8kmLd8LG.jpg",
+                                                        "id": 429203,
+                                                        "adult": false,
+                                                        "backdrop_path": "/8bRIfPGDnmWgdy65LO8xtdcFmFP.jpg",
+                                                        "original_language": "en",
+                                                        "original_title": "The Old Man & the Gun",
+                                                        "genre_ids": [
+                                                            35,
+                                                            80,
+                                                            18
+                                                        ],
+                                                        "title": "The Old Man & the Gun",
+                                                        "vote_average": 6.4,
+                                                        "overview": "The true story of Forrest Tucker, from his audacious escape from San Quentin at the age of 70 to an unprecedented string of heists that confounded authorities and enchanted the public. Wrapped up in the pursuit are a detective, who becomes captivated with Forrest’s commitment to his craft, and a woman, who loves him in spite of his chosen profession.",
+                                                        "release_date": "2018-09-28"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "movies.search"
+            },
+            "parameters": [
+                {
+                    "name": "movie_id",
+                    "description": "The id of the movie",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "name": "title",
+                    "description": "The title of the movie",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": false
+                }
+            ]
+        },
+        "/movie/favorite-list": {
+            "summary": "Manage favorite movies",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "movies.list_favorites": {
+                                        "value": {
+                                            "success": true,
+                                            "code": 200,
+                                            "data": [
+                                                {
+                                                    "adult": false,
+                                                    "backdrop_path": "/yaattgmMQ9dLg6n8XPXAER8WI2C.jpg",
+                                                    "belongs_to_collection": {
+                                                        "id": 115570,
+                                                        "name": "Star Trek: The Next Generation Collection",
+                                                        "poster_path": "/sddV6vaUC6x37icJS3opIXTXB07.jpg",
+                                                        "backdrop_path": "/r7MMQenUURHhAVHFymtOb8AX4Bm.jpg"
+                                                    },
+                                                    "budget": 70000000,
+                                                    "genres": [
+                                                        {
+                                                            "id": 878,
+                                                            "name": "Science Fiction"
+                                                        },
+                                                        {
+                                                            "id": 28,
+                                                            "name": "Action"
+                                                        },
+                                                        {
+                                                            "id": 12,
+                                                            "name": "Adventure"
+                                                        },
+                                                        {
+                                                            "id": 53,
+                                                            "name": "Thriller"
+                                                        }
+                                                    ],
+                                                    "id": 200,
+                                                    "imdb_id": "tt0120844",
+                                                    "original_language": "en",
+                                                    "original_title": "Star Trek: Insurrection",
+                                                    "overview": "When an alien race and factions within Starfleet attempt to take over a planet that has \"regenerative\" properties, it falls upon Captain Picard and the crew of the Enterprise to defend the planet's people as well as the very ideals upon which the Federation itself was founded.",
+                                                    "popularity": 10.479,
+                                                    "poster_path": "/9pbc44kltJhArUNyrdQcantMEvH.jpg",
+                                                    "production_companies": [
+                                                        {
+                                                            "id": 4,
+                                                            "logo_path": "/fycMZt242LVjagMByZOLUGbCvv3.png",
+                                                            "name": "Paramount",
+                                                            "origin_country": "US"
+                                                        },
+                                                        {
+                                                            "id": 76068,
+                                                            "name": "Digital Image Associates",
+                                                            "origin_country": ""
+                                                        }
+                                                    ],
+                                                    "production_countries": [
+                                                        {
+                                                            "iso_3166_1": "US",
+                                                            "name": "United States of America"
+                                                        }
+                                                    ],
+                                                    "release_date": "1998-12-10",
+                                                    "revenue": 118000000,
+                                                    "runtime": 103,
+                                                    "spoken_languages": [
+                                                        {
+                                                            "iso_639_1": "en",
+                                                            "name": "English"
+                                                        }
+                                                    ],
+                                                    "status": "Released",
+                                                    "tagline": "The battle for paradise has begun.",
+                                                    "title": "Star Trek: Insurrection",
+                                                    "video": false,
+                                                    "vote_average": 6.4,
+                                                    "vote_count": 618
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "movies.list_favorites",
+                "summary": "Get list of favorite movies"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "movies.add_favorite_request": {
+                                    "value": {
+                                        "movie_id": 200
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+
+                            }
+                        }
+                    }
+                },
+                "summary": "Add movie to users favorite list"
+            }
+        }
+    }
+}
