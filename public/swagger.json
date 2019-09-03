@@ -196,6 +196,43 @@
                     }
                 },
                 "summary": "Add movie to users favorite list"
+            },
+            "delete": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "movies.delete_favorite_request": {
+                                    "value": {
+                                        "movie_id": 200
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "movies.delete_favorite": {
+                                        "value": {
+                                            "success": true,
+                                            "code": 200,
+                                            "data": {
+                                                "deleted_ids": 200
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "movies.delete_favorite",
+                "summary": "Delete a favorite movie from favorite list"
             }
         }
     }
