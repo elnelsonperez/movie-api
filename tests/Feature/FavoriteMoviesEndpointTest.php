@@ -30,9 +30,9 @@ class SearchMoviesApiTest extends TestCase
 
     public function listFavorites () {
 
-        FavoriteMovie::create([
-
-        ]);
+//        FavoriteMovie::create([
+//
+//        ]);
 
     }
 
